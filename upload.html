@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Upload Data Buku</title>
+</head>
+<body>
+  <h2>Upload File Excel/CSV</h2>
+  <form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".xlsx,.xls,.csv" required />
+    <button type="submit">Upload</button>
+  </form>
+  <p><a href="/logout">Logout</a></p>
+</body>
+</html>

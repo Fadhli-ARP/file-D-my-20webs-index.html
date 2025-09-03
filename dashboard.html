@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markas Team - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard - Markas Team</h1>
+    <p id="welcomeMsg"></p>
+
+    <h2>Form Absen</h2>
+    <form id="absenForm">
+      <input type="text" id="absenName" placeholder="Nama" required>
+      <input type="text" id="absenKegiatan" placeholder="Kegiatan Hari Ini" required>
+      <button type="submit">Absen</button>
+    </form>
+
+    <div id="absenList">
+      <h3>Daftar Absen</h3>
+      <ul id="list"></ul>
+    </div>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

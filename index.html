@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Perpustakaan Lingga - Login</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="#" class="img-kecil">
+        <img src="file:///C:/Users/ACER/Documents/Logo%20Perpustakaan%20Lingga%20(V1)/Logo%20Perpustakaan%20Lingga%20-%20White.svg" alt="Logo Perpustakaan"/>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog_buku.html">Katalog Buku</a></li>
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <section class="card">
+      <h2 style="margin-bottom: 0.7rem;">Selamat Datang</h2>
+      <div style="text-align:center; color:#374151; margin-bottom:2.0rem;">
+        Masuk untuk mengakses koleksi buku dan layanan perpustakaan.
+      </div>
+
+      <!-- Toggle Buttons -->
+      <div class="form-toggle">
+        <button id="btnLogin" onclick="toggleForm('login')" class="active">Login</button>
+        <button id="btnSignup" onclick="toggleForm('signup')">Daftar</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="active">
+        <label for="loginUsername">Username</label>
+        <input id="loginUsername" type="text" placeholder="Masukkan username" required/>
+        
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" placeholder="Masukkan password" required/>
+        
+        <button type="button" onclick="login()">Masuk</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signupForm" class="hidden">
+        <label for="signupUsername">Username</label>
+        <input id="signupUsername" type="text" placeholder="Buat username" required/>
+        
+        <label for="signupPassword">Password</label>
+        <input id="signupPassword" type="password" placeholder="Buat password" required/>
+        
+        <label for="signupRole">Peran</label>
+        <select id="signupRole">
+          <option value="member">Member</option>
+          <option value="admin">Admin</option>
+        </select>
+        
+        <button type="button" onclick="signUp()">Daftar</button>
+      </form>
+    </section>
+    <section class="card" style="margin-left: 10px ;">
+      <h2>hidup jokowi</h2>
+      <p style="text-align:center; color:#374151;">Temukan berbagai koleksi buku menarik di sini.</p>
+      <!-- Tambahkan konten spesifik untuk halaman Beranda di sini -->
+       <a class="img-besar"><img src="Funny Malay Sayings.jpg" alt="Funny Malay Sayings"></a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2024 Perpustakaan Lingga. Semua hak cipta dilindungi.</p>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>

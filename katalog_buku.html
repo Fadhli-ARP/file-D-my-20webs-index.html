@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perpustakaan Lingga - Katalog Buku</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="beranda.html" class="img-kecil">
+        <img src="file:///C:/Users/ACER/Documents/Logo%20Perpustakaan%20Lingga%20(V1)/Logo%20Perpustakaan%20Lingga%20-%20White.svg" alt="Logo Perpustakaan Lingga" />
+      </a>
+      <nav>
+        <ul>
+          <li><a href="beranda.html">Beranda</a></li>
+          <li><a href="katalog_buku.html" class="active">Katalog Buku</a></li>
+          <li><a href="tentang_kami.html">Tentang Kami</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Katalog Buku</h2>
+      <p style="text-align:center; color:#374151;">
+        Selamat datang di katalog buku! Kamu bisa cari buku berdasarkan judul atau penulis.
+      </p>
+
+      <div style="margin-bottom: 1.5rem;">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Cari judul atau penulis buku..." 
+          onkeyup="filterBooks()" 
+          style="width: 100%; padding: 0.75rem; border-radius: 0.75rem; border: 2px solid #d1d5db; font-size: 1rem; font-family: inherit;"
+        />
+      </div>
+
+      <form id="addBookForm" onsubmit="event.preventDefault(); addBook();" style="margin-bottom: 2rem;">
+        <label for="judulInput">Judul</label>
+        <input type="text" id="judulInput" required />
+
+        <label for="penulisInput">Penulis</label>
+        <input type="text" id="penulisInput" required />
+
+        <label for="tahunInput">Tahun</label>
+        <input type="number" id="tahunInput" required min="0" />
+
+        <label for="kategoriInput">Kategori</label>
+        <input type="text" id="kategoriInput" required />
+
+        <button type="submit">Tambah Buku</button>
+      </form>
+
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="padding: 0.75rem; border-bottom: 2px solid #d1d5db;">Judul</th>
+            <th style="padding: 0.75rem; border-bottom: 2px solid #d1d5db;">Penulis</th>
+            <th style="padding: 0.75rem; border-bottom: 2px solid #d1d5db;">Tahun</th>
+            <th style="padding: 0.75rem; border-bottom: 2px solid #d1d5db;">Kategori</th>
+            <th style="padding: 0.75rem; border-bottom: 2px solid #d1d5db;">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="bookTableBody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 Perpustakaan Lingga. Semua hak cipta dilindungi.</p>
+  </footer>
+
+  <script>
+    let books = [
+      { judul: "Belajar JavaScript", penulis: "Budi Santoso", tahun: 2020, kategori: "Pemrograman" },
+      { judul: "Sejarah Indonesia", penulis: "Ani Wijaya", tahun: 2018, kategori: "Sejarah" },
+      { judul: "Matematika Dasar", penulis: "Joko Susilo", tahun: 2019, kategori: "Pendidikan" }
+    ];
+
+    window.onload = () => {
+      displayBooks();
+    };
+
+    function displayBooks(bookList = books) {
+      const tbody = document.getElementById('bookTableBody');
+      tbody.innerHTML = '';
+      bookList.forEach((book, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${book.judul}</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${book.penulis}</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${book.tahun}</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${book.kategori}</td>
+          <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+            <button onclick="deleteBook(${index})" style="background: #dc2626; border:none; color:white; padding:0.5rem 1rem; border-radius: 0.75rem; cursor:pointer;">Hapus</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterBooks() {
+      const query = document.getElementById('searchInput').value.toLowerCase();
+      const filtered = books.filter(book =>
+        book.judul.toLowerCase().includes(query) ||
+        book.penulis.toLowerCase().includes(query)
+      );
+      displayBooks(filtered);
+    }
+
+    function addBook() {
+      const judul = document.getElementById('judulInput').value.trim();
+      const penulis = document.getElementById('penulisInput').value.trim();
+      const tahun = document.getElementById('tahunInput').value.trim();
+      const kategori = document.getElementById('kategoriInput').value.trim();
+
+      if (!judul || !penulis || !tahun || !kategori) {
+        alert('Harap isi semua kolom!');
+        return;
+      }
+
+      books.push({ judul, penulis, tahun: parseInt(tahun), kategori });
+      displayBooks();
+
+      document.getElementById('addBookForm').reset();
+    }
+
+    function deleteBook(index) {
+      if (confirm('Yakin ingin menghapus buku ini?')) {
+        books.splice(index, 1);
+        displayBooks();
+      }
+    }
+  </script>
+</body>
+</html>
